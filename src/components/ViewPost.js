@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Navigate, useParams,useNavigate } from 'react-router-dom';
 
 import { useSelector } from "react-redux";
@@ -38,41 +38,49 @@ const ViewPost = () => {
         return <Navigate to="/login" />;
     }
  
-    return <div>
-        <div className="container">
-            <div className='row'>
-                <div className='col-md-12'>
- 
-                    <h1>View Post</h1>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Content</th>
-                                <th>Update Time</th>
-                                <th>Author</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{post.id}</td>
-                                <td>{post.title}</td>
-                                <td>{post.content}</td>
-                                <td>{post.update_time}</td>
-                                <td>{post.author}</td>
-                            </tr>
- 
-                        </tbody>
-                    </table>
+    return (
+        <div>
+            <header>
+                <div class="container">
+                    <h1>{post.title}</h1>
+                    <p>
+                    <small>By <em>{post.author}</em> | Posted on:
+                        <em>{" " + post.update_time}</em></small>
+                    </p>
                 </div>
- 
+            </header>
+            <main>
+                <article class="container">
+                    <h3>{post.content}</h3>
+                </article>
+            </main>
+            <div className='container d-flex justify-content-center'>
+                <button className='btn btn-primary' onClick={ clickToBackHandler}>Back To Posts</button>
             </div>
         </div>
-        <div className='container d-flex justify-content-center'>
-            <div><button className='btn btn-primary' onClick={clickToBackHandler}>Back To Posts</button></div>
-        </div>
-    </div>;
+        // <div>
+        //     <div>
+        //         <h2>{post.title}</h2>
+        //     </div>
+        //     <div>
+        //       <label>
+        //         <strong>Author:</strong>
+        //       </label>{" "}
+        //       {post.author}
+        //     </div>
+        //     <div>
+        //       <label>
+        //         <strong>Update Time:</strong>
+        //       </label>{" "}
+        //       {post.update_time}
+        //     </div>
+        //     <div>
+        //       <label>
+        //         <strong>Content:</strong>
+        //       </label>{" "}
+        //       {post.content}
+        //     </div>
+    );
 };
  
 export default ViewPost;

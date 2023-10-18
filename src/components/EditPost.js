@@ -69,7 +69,7 @@ const EditPost = () => {
                 </div>
                 <div className="mb-3 mt-3">
                     <label className="form-label"> Content</label>
-                    <textarea id="content" name="content" value={postField.content} onChange={changePostFieldHandler} />
+                    <textarea id="content" cols="50" name="content" value={postField.content} onChange={changePostFieldHandler} />
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={e=>onSubmitChange(e)}>Update</button>
             </form>

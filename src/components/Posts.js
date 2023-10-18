@@ -145,10 +145,10 @@ const ListPosts = (props) => {
             Header: "Title",
             accessor: "title",
           },
-          {
-            Header: "Content",
-            accessor: "content",
-          },
+        //   {
+        //     Header: "Content",
+        //     accessor: "content",
+        //   },
           {
             Header: "Author",
             accessor: "author_email",
@@ -169,10 +169,10 @@ const ListPosts = (props) => {
             //   console.log('currentUser email: ' + currentUser.email);
               return(
                 <div>
-              <Button variant="outlined" startIcon={<VisibilityIcon />} onClick={()=>viewPost(rowIdx)}></Button>
+              <Button size="small" startIcon={<VisibilityIcon />} onClick={()=>viewPost(rowIdx)}></Button>
               {/* <Link to={`/view/${post_id}`} className="btn btn-success mx-2">View</Link> */}
-              {currentUser && currentUser.email === author_email && (<Button variant="outlined" startIcon={<EditIcon />} onClick={()=>editPost(rowIdx)}></Button>)}
-              {currentUser && currentUser.email === author_email && (<Button variant="outlined" startIcon={<DeleteIcon />} onClick={()=>handleDelete(rowIdx)}></Button>)}
+              {currentUser && currentUser.email === author_email && (<Button size="small" startIcon={<EditIcon />} onClick={()=>editPost(rowIdx)}></Button>)}
+              {currentUser && currentUser.email === author_email && (<Button size="small" startIcon={<DeleteIcon />} onClick={()=>handleDelete(rowIdx)}></Button>)}
               </div>
               );
             //   if(currentUser && author_email === currentUser.email) {
