@@ -63,49 +63,16 @@ export default function CreatePost(){
                     <div className="form-group">
                         <label htmlFor="content">Content</label>
                         <textarea name="content" cols="50" onChange={handleChange} />
-                        {/* <input
-                        type="text"
-                        className="form-control"
-                        id="description"
-                        required
-                        value={tutorial.description || ''}
-                        onChange={handleChange}
-                        name="description"
-                        /> */}
                     </div>
 
                     <button onClick={handleSubmit} className="btn btn-success">
                         Submit
                     </button>
-
-                    {/* <button className='btn btn-primary' onClick={ clickToBackHandler}>Back To Posts</button> */}
                 </div>
             </div>
             <div className='container d-flex justify-content-center'>
                 <button className='btn btn-primary' onClick={ clickToBackHandler}>Back To Posts</button>
             </div>
         </div>
-    // <div>
-    //     <div className="container h-100">
-    //         <div className="row">
-    //             <div className="col-2"></div>
-    //             <div className="col-8">
-    //             <h1>Create Post</h1>
-    //             <form onSubmit={handleSubmit}>
-    //                 <div className="mb-3">
-    //                   <label>Title</label>
-    //                   <input type="text" className="form-control" name="title" onChange={handleChange} />
-    //                 </div>
-    //                 <div className="mb-3">
-    //                   <label>Content</label>
-    //                   <textarea name="content" onChange={handleChange} />
-    //                 </div>   
-    //                 <button type="submit" name="add" className="btn btn-primary">Save</button>
-    //             </form>
-    //             </div>
-    //             <div className="col-2"></div>
-    //         </div>
-    //     </div>
-    // </div>
   );
 }

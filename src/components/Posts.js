@@ -13,7 +13,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
   
 const ListPosts = (props) => {
     const [posts, setPosts] = useState([]);
-    // const [info, setInfo] = useState({});
     const [searchTerm, setSearchTerm] = useState("");
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
@@ -38,7 +37,6 @@ const ListPosts = (props) => {
     
         if (page) {
           params["page"] = page;
-        //   params["page"] = page - 1;
         }
     
         return params;
@@ -51,8 +49,6 @@ const ListPosts = (props) => {
             .then((response) => {
                 setPosts(response.data.results);
                 setCount(response.data.totalPages);
-                //console.log(data.data.results);
-                // setInfo(data.data);
                 console.log(response.data);
             })
             .catch((err) => {
@@ -62,17 +58,6 @@ const ListPosts = (props) => {
                 }
             });
     };
-
-    // const handleNextPage = () => {
-    //     fetchPosts(info.next_page);
-    //     window.scrollTo(0, 0);
-    // };
-
-    // const handlePreviousPage = () => {
-    //     fetchPosts(info.prev_page);
-    //     window.scrollTo(0, 0);
-    // };
-    // useEffect(fetchPosts(), []);
 
     const findByTerm = () => {
         setPage(1);
@@ -88,7 +73,6 @@ const ListPosts = (props) => {
     const editPost = (rowIndex) => {
         const id = postsRef.current[rowIndex].id;
     
-        // props.history.push("/edit/" + id);
         navigate("/edit/" + id);
     };
     
@@ -96,9 +80,7 @@ const ListPosts = (props) => {
         const id = postsRef.current[rowIndex].id;
     
         UserService.deletePost(id)
-          .then((response) => {
-            // props.history.push("/posts");
-    
+          .then((response) => {  
             let newPosts = [...postsRef.current];
             newPosts.splice(rowIndex, 1);
     
@@ -117,23 +99,6 @@ const ListPosts = (props) => {
     };
 
     useEffect(fetchPosts, [page]);
-   
-    // const handleDelete = (id) => {
-    //     UserService.deletePost(id)
-    //     .then(function(response){
-    //         console.log(response.data);
-    //         alert("Successfully Deleted");
-    //         fetchPosts(1);
-    //     })
-    //     .catch(function(err){
-    //         console.log("Something Wrong");
-    //         alert("Something Wrong");
-    //         if (err.response && err.response.status === 401) {
-    //             EventBus.dispatch("logout");
-    //         }
-    //     });
-        
-    // }
 
     const columns = useMemo(
         () => [
@@ -141,70 +106,37 @@ const ListPosts = (props) => {
                 Header: "ID",
                 accessor: "id",
             },
-          {
-            Header: "Title",
-            accessor: "title",
-          },
-        //   {
-        //     Header: "Content",
-        //     accessor: "content",
-        //   },
-          {
-            Header: "Author",
-            accessor: "author_email",
-          },
-          {
-            Header: "Last Update",
-            accessor: "update_time",
-          },
-          {
-            Header: "Actions",
-            accessor: "actions",
-            Cell: (props) => {
-              const rowIdx = props.row.id;
-              const author_email = postsRef.current[rowIdx].author_email;
-            //   const post_id = postsRef.current[rowIdx].id;
-            //   console.log('props: ' + props.row);
-            //   console.log('author_email: ' + author_email);
-            //   console.log('currentUser email: ' + currentUser.email);
-              return(
-                <div>
-              <Button size="small" startIcon={<VisibilityIcon />} onClick={()=>viewPost(rowIdx)}></Button>
-              {/* <Link to={`/view/${post_id}`} className="btn btn-success mx-2">View</Link> */}
-              {currentUser && currentUser.email === author_email && (<Button size="small" startIcon={<EditIcon />} onClick={()=>editPost(rowIdx)}></Button>)}
-              {currentUser && currentUser.email === author_email && (<Button size="small" startIcon={<DeleteIcon />} onClick={()=>handleDelete(rowIdx)}></Button>)}
-              </div>
-              );
-            //   if(currentUser && author_email === currentUser.email) {
-            //     return (
-            //         <div>
-            //             <span onClick={() => viewPost(rowIdx)}>
-            //                 <i className="far fa-eye action mr-2"></i>
-            //             </span>
-
-            //             <span onClick={() => editPost(rowIdx)}>
-            //                 <i className="far fa-edit action mr-2"></i>
-            //             </span>
-            
-            //             <span onClick={() => deletePost(rowIdx)}>
-            //                 <i className="fas fa-trash action"></i>
-            //             </span>
-            //         </div>
-            //     );
-            //   }
-            //   else {
-            //     return (
-            //         <div>
-            //             <span onClick={() => viewPost(rowIdx)}>
-            //                 <i className="far fa-eye action mr-2"></i>
-            //             </span>
-            //         </div>
-            //     );
-            //   }
+            {
+                Header: "Title",
+                accessor: "title",
             },
-          },
+            {
+                Header: "Author",
+                accessor: "author_email",
+            },
+            {
+                Header: "Last Update",
+                accessor: "update_time",
+            },
+            {
+                Header: "Actions",
+                accessor: "actions",
+                Cell: (props) => {
+                const rowIdx = props.row.id;
+                const author_email = postsRef.current[rowIdx].author_email;
+
+                return(
+                    <div>
+                        <Button size="small" startIcon={<VisibilityIcon />} onClick={()=>viewPost(rowIdx)}></Button>
+                        {/* <Link to={`/view/${post_id}`} className="btn btn-success mx-2">View</Link> */}
+                        {currentUser && currentUser.email === author_email && (<Button size="small" startIcon={<EditIcon />} onClick={()=>editPost(rowIdx)}></Button>)}
+                        {currentUser && currentUser.email === author_email && (<Button size="small" startIcon={<DeleteIcon />} onClick={()=>handleDelete(rowIdx)}></Button>)}
+                    </div>
+                );
+                },
+            },
         ],
-        [currentUser]
+        []
     );
 
     const {
@@ -294,66 +226,7 @@ const ListPosts = (props) => {
             </div>
           </div>
         </div>
-      );
-     
-//     return (
-//     <div>
-//         <div className="container h-100">
-//             <div className="row h-100">
-//                 <div className="col-12">
-//                     <p><Link to="/createpost" className="btn btn-success">Create New Post</Link> </p>
-//                     <h1>List Posts</h1>
-//                     <table class="table table-bordered table-striped">
-//                         <thead>
-//                             <tr>
-//                                 <th>ID</th>
-//                                 <th>Title</th>
-//                                 <th>Author</th>
-//                                 <th>Update Time</th>
-//                                 <th>Actions</th>
-//                             </tr>
-//                         </thead>
-//                         <tbody>
-//                             {posts.map((post, key) =>
-//                                 <tr key={key}>
-//                                     <td>{post.id}</td>
-//                                     <td>{post.title}</td>
-//                                     <td>{post.author_email}</td>
-//                                     <td>{post.update_time}</td>
-//                                     <td>
-//                                         <NavLink to={`/view/${post.id}`} className="btn btn-success mx-2">View</NavLink>
-//                                         {currentUser && currentUser.email === post.author_email && (<NavLink to={`/edit/${post.id}`} className="btn btn-info mx-2">Edit</NavLink>)}
-//                                         {currentUser && currentUser.email === post.author_email && (<button onClick={()=>handleDelete(post.id)} className="btn btn-danger">Delete</button>)}
-//                                     </td>
-//                                 </tr>
-//                             )}
-//                         </tbody>
-//                     </table>
-//                 </div>
-//                 <div className="container pb-5">
-//                     <nav>
-//                     <ul className="pagination justify-content-center">
-//                         {info.prev_page != -1 ? (
-//                         <li className="page-item">
-//                             <button className="page-link" onClick={handlePreviousPage}>
-//                             Previous
-//                             </button>
-//                         </li>
-//                         ) : null}
-//                         {info.next_page != -1 ? (
-//                         <li className="page-item">
-//                             <button className="page-link" onClick={handleNextPage}>
-//                             Next
-//                             </button>
-//                         </li>
-//                         ) : null}
-//                     </ul>
-//                     </nav>
-//                 </div>
-//             </div>       
-//         </div>
-//     </div>
-//   );
+    );
 };
 
 export default ListPosts;
