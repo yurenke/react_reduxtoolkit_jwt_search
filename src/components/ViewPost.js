@@ -40,15 +40,17 @@ const ViewPost = () => {
  
     return (
         <div>
-            <header>
+            <div class="postheader">
                 <div class="container">
                     <h1>{post.title}</h1>
                     <p>
-                    <small>By <em>{post.author}</em> | Posted on:
-                        <em>{" " + post.update_time}</em></small>
+                    <small>By <em>{post.author}</em> | Posted:
+                        <em>{" " + post.update_time}</em> | Last Updated:
+                        <em>{" " + post.create_time}</em>
+                    </small>
                     </p>
                 </div>
-            </header>
+            </div>
             <main>
                 <article class="container">
                     <h3>{post.content}</h3>

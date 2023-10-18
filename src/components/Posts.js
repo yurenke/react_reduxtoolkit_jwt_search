@@ -154,7 +154,7 @@ const ListPosts = (props) => {
             accessor: "author_email",
           },
           {
-            Header: "Update Time",
+            Header: "Last Update",
             accessor: "update_time",
           },
           {
