@@ -5,7 +5,7 @@ import TokenService from "services/token.service";
 // const API_URL = "http://localhost:5000/auth/";
 
 const register = (username, email, password) => {
-  return api.post("/auth/signup", {
+  return api.post("/v1/auth/signup", {
     username: username,
     email: email,
     password: password,
@@ -14,7 +14,7 @@ const register = (username, email, password) => {
 
 const login = (email, password) => {
   return api
-    .post("/auth/signin", {
+    .post("/v1/auth/signin", {
         email: email,
         password: password,
     })
