@@ -85,6 +85,7 @@ const ListPosts = (props) => {
             newPosts.splice(rowIndex, 1);
     
             setPosts(newPosts);
+            alert("post deleted");
           })
           .catch((e) => {
             console.log(e);

@@ -36,6 +36,9 @@ export default function CreatePost(){
             if (err.response && err.response.status === 401) {
                 EventBus.dispatch("logout");
             }
+            else {
+                alert(err.response.data.message);
+            }
         });
           
     }
